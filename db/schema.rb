@@ -16,14 +16,16 @@ ActiveRecord::Schema.define(version: 20180422011037) do
   enable_extension "plpgsql"
 
   create_table "students", force: :cascade do |t|
+    t.integer "github_id"
+    t.string "login"
+    t.string "url"
+    t.string "avatar_url"
     t.string "name"
-    t.string "hometown"
-    t.string "last_lab"
-    t.string "current_track"
-    t.integer "learn"
-    t.string "slack"
-    t.string "github"
-    t.string "avatar"
+    t.string "blog"
+    t.string "location"
+    t.string "bio"
+    t.string "email"
+    t.string "learn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,30 @@
+<h1>Students</h1>
+<hr />
+<table>
+  <tr align="left">
+		<th>github_id</th>
+		<th>login</th>
+		<th>url</th>
+		<th>avatar_url</th>
+		<th>name</th>
+		<th>blog</th>
+		<th>location</th>
+		<th>bio</th>
+		<th>email</th>
+		<th>learn</th>
+  </tr>
+	<% @students.each do |student| %>
+		<tr>
+			<td><%= student.github_id %></td>
+			<td><%= student.login %></td>
+			<td><%= student.url %></td>
+			<td><%= student.avatar_url %></td>
+			<td><%= student.name %></td>
+			<td><%= student.blog %></td>
+			<td><%= student.location %></td>
+			<td><%= student.bio %></td>
+			<td><%= student.email %></td>
+			<td><%= student.learn %></td>
+		</tr>
+	<% end %>
+</table>
