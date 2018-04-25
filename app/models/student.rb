@@ -9,39 +9,34 @@ class Student < ApplicationRecord
 	def self.sg
 		page = HTTParty.get('https://learn.co/study-groups/live-discussion-intro-to-ruby-pt-1-variables-m')
 		parse = Nokogiri::HTML(page)
-		@students = []		
-		
-		# parse.css('div.media-block__media').each do |row|
-		parse.css('li').each do |row|
-			student = {}
-			# binding.pry
-			
-			# "name"
-
-			if row.css('a')
-				student["name"] = row.css('a')[1].text 
-			end
-
-			# "hometown"
-			# "last_lab"
-			# "current_track"
-			# "learn_id"
-			# "slack"
-			
-			
-			# "avatar"
-			student['avatar'] = row.css('img').as_json.flatten[3] if row.css('img').as_json
-			
-			# "github"
-			# student['github'] = row['href'], 
-			# student['github'] = row.attributes['href'].value if row.attributes['href']
-			@students.push(student) if !student['avatar'].nil?
+		@students = []
+		parse.css('div.media-block__media a').each do |item| 
+			student = {
+			github: item.attributes['href'].value,
+			avatar: item.children[0].children[0].attributes['src'].value,
+			learn: "https://learn.co#{item.attributes['href'].value}"
+		}
+		newStudent = Student.new(
+			github: student["github"], 
+			avatar: student["avatar"], 
+			learn: student["learn"])
+		newStudent.save
 		end
-binding.pry
-		# @students[6..@students.length].uniq
 	end
 
-
+		
+	
+	# "name"
+	# "hometown"
+	# "last_lab"
+	# "current_track"
+	# "learn"
+	# "avatar"
+	
+		#js--region-main > div > div.level.level--background-color-blue-light.util--padding-tm.util--padding-bm > div > div > div.media-block__content.media-block__content--fill > div > div > div.heading.heading--level-1.heading--font-size-largest.heading--color-grey-dark
+		
+		
+  
 	def self.si
 		nurl = 'http://avatars.githubusercontent.com/u/29719360'
 		page = HTTParty.get(nurl)

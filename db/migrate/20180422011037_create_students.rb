@@ -5,9 +5,10 @@ class CreateStudents < ActiveRecord::Migration[5.1]
 			t.string :hometown
 			t.string :last_lab
 			t.string :current_track
-			t.integer :learn_id
+			t.integer :learn
 			t.string :slack
 			t.string :github
+			t.string :avatar
 
       t.timestamps
     end

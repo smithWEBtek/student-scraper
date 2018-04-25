@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20180422011037) do
     t.string "hometown"
     t.string "last_lab"
     t.string "current_track"
-    t.integer "learn_id"
+    t.integer "learn"
     t.string "slack"
     t.string "github"
+    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
