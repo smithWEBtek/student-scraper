@@ -8,7 +8,11 @@ class Student < ApplicationRecord
 			student.gitinfo
 		end
 	end
-  
+	
+	def learn_login
+		"https://learn.co/" + self.login
+	end
+
 	def gitinfo
 		client_id = ENV['client_id']
 		client_secret = ENV['client_secret']
@@ -16,6 +20,7 @@ class Student < ApplicationRecord
 			req.params['client_id'] = client_id
 			req.params['client_secret'] = client_secret
 		end
+
 		if @resp.success?
 			body = JSON.parse(@resp.body)
 			self.github_id = body["id"]
@@ -27,10 +32,10 @@ class Student < ApplicationRecord
 			self.location = body["location"]
 			self.bio = body["bio"]
 			self.email = body["email"]
-			self.learn = body["learn"]
+			self.learn = "https://learn.co/" + "#{body["login"]}"
 			self.save
 		else
-			@error = "errors! oh my!"
+			@error = "Response unsuccessful."
 		end
 	end
  

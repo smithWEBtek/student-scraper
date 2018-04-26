@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-	
-	resources :students
-	root '/students#index'
+
+
 	get '/gitinfo', to: 'students#gitinfo'
+
+	root 'api/students#index'  
+  get 'api/students/:id/resources', to: 'api/students#resources'
+  namespace :api do
+    resources :students
+  end
 end

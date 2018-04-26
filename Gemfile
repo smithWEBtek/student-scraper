@@ -10,6 +10,8 @@ gem 'watir'
 gem 'nokogiri', '>=1.5.9'
 gem 'httparty'
 
+gem 'responders'
+
 gem 'faraday'
 gem 'dotenv-rails'
 
